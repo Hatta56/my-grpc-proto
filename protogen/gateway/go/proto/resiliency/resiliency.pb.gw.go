@@ -69,7 +69,7 @@ func local_request_ResiliencyService_UnaryResiliency_0(ctx context.Context, mars
 }
 
 var (
-	filter_ResiliencyService_ServerStreamingResiliency_0 = &utilities.DoubleArray{Encoding: map[string]int{"min_delay_second": 0, "max_delay_second": 1}, Base: []int{1, 2, 4, 0, 0, 0, 0}, Check: []int{0, 1, 1, 2, 2, 3, 3}}
+	filter_ResiliencyService_ServerStreamingResiliency_0 = &utilities.DoubleArray{Encoding: map[string]int{"min_delay_second": 0, "max_delay_second": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
 )
 
 func request_ResiliencyService_ServerStreamingResiliency_0(ctx context.Context, marshaler runtime.Marshaler, client extResiliency.ResiliencyServiceClient, req *http.Request, pathParams map[string]string) (extResiliency.ResiliencyService_ServerStreamingResiliencyClient, runtime.ServerMetadata, error) {
@@ -214,11 +214,7 @@ func request_ResiliencyWithMetadataService_UnaryResiliencyWithMetadata_0(ctx con
 	var protoReq extResiliency.ResiliencyRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -231,11 +227,7 @@ func local_request_ResiliencyWithMetadataService_UnaryResiliencyWithMetadata_0(c
 	var protoReq extResiliency.ResiliencyRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -248,11 +240,7 @@ func request_ResiliencyWithMetadataService_ServerStreamingResiliencyWithMetadata
 	var protoReq extResiliency.ResiliencyRequest
 	var metadata runtime.ServerMetadata
 
-	newReader, berr := utilities.IOReaderFactory(req.Body)
-	if berr != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
-	}
-	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+	if err := marshaler.NewDecoder(req.Body).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
